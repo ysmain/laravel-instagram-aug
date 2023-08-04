@@ -19,9 +19,7 @@
             {{-- follower数など表示 --}}
             <div class="row mb-3">
                 <div class="col-auto">
-                    <a href="#" class="text-decoration-none text-dark">
-                        <strong>{{$user->post->count()}}</strong> Posts
-                    </a>
+                    <strong>{{$user->post->count()}}</strong> Posts
                 </div>
                 <div class="col-auto">
                     <a href="{{route('profile.followers',$user->id)}}" class="text-decoration-none text-dark">

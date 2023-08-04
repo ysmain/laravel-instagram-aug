@@ -38,26 +38,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // validation laterだって
-        // $request->validate([
-        //     'category' => 'required',
-        //     'description'  => 'required',
-        //     'image' => 'required|mimes:jpg,jpeg,png,gif|max:1048'
-        //     // mimes ~~ multipurpose internet mail extensions
-        //    ]);
-           $this->post->user_id = Auth::user()->id;
-           $this->post->description = $request->description;
-           $this->post->image = 'data:image/'.$request->image->extension().';base64,'.base64_encode(file_get_contents($request->image));
 
-           $this->post->save();
+        $this->post->user_id = Auth::user()->id;
+        $this->post->description = $request->description;
+        $this->post->image = 'data:image/'.$request->image->extension().';base64,'.base64_encode(file_get_contents($request->image));
 
-           foreach($request->categories as $category_id):
-              $category_post[] = ['category_id'=>$category_id];
-           endforeach;
+        $this->post->save();
 
-           $this->post->category_post()->createMany($category_post);
+        foreach($request->categories as $category_id):
+            $category_post[] = ['category_id'=>$category_id];
+        endforeach;
 
-           return redirect()->route('index');
+        $this->post->category_post()->createMany($category_post);
+
+        return redirect()->route('index');
     }
 
     /**
@@ -92,7 +86,6 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
 
-        // __constructで$post定義されてるからそのままアクセスできる？
         $post->description = $request->description;
         if($request->image){
         $post->image = 'data:image/'.$request->image->extension().';base64,'.base64_encode(file_get_contents($request->image));

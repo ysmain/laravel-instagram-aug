@@ -71,7 +71,6 @@ class CategoriesController extends Controller
     {
         $category = $request->input('search');
 
-        // Perform your search logic here
         $results = Category::where('name', 'LIKE', "%$category%")->get();
 
         return view('admin.categories.result')

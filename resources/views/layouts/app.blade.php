@@ -14,7 +14,7 @@
 
     {{-- Font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- CSS 【復習できる】asset→publicフォルダー --}}
+    {{-- CSS asset→publicフォルダー --}}
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
     <!-- Scripts -->
@@ -33,7 +33,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    {{-- add a search bar on the final week:student's activity --}}
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <div class="">
@@ -83,7 +82,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    {{-- future: admin 確認 --}}
+                                    {{-- admin --}}
                                     @if(Auth::user()->role_id === 1)
                                         <a href="{{route('admin.users.index')}}" class="dropdown-item">
                                             <i class="fa-solid fa-user-gear"></i> Admin
@@ -114,10 +113,6 @@
         <main class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    {{-- <div class="col-3">
-                      {{-- admin controls: future --}}
-                    {{-- </div> --}}
-
                     <div class="col-10">
                         @yield('content')
                     </div>

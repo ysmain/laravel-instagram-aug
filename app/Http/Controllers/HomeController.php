@@ -56,7 +56,7 @@ class HomeController extends Controller
               $suggested_users[] = $user;
             }
         }
-        //if(!)!を置くことでifの逆条件を指定できる。この場合はフォロワーに自分が含まれてないものをarrayに入れることができる。
+
         return $suggested_users;
     }
 
@@ -72,9 +72,6 @@ class HomeController extends Controller
     {
         $search = $request->input('search');
 
-        // Perform your search logic here
-        // where(column_name, operator, value)
-        // % ~~ wildcard or anything before or after 2文字以上置ける　ワイルドカード
         $results = User::where('name', 'LIKE', "%$search%")->get();
 
         return view('users.result')

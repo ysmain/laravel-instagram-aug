@@ -113,7 +113,7 @@
                     <a href="{{route('profile.show',$post->user->id)}}" class="fw-bold text-dark text-decoration-none ms-1">{{$post->user->name}}</a>
                     <span class="ms-2">{{$post->description}}</span>
                     <p class="text-muted small ms-1">{{ $post->created_at->diffForHumans() }}</p>
-                                                                   {{-- ↑何時間前かを表示 --}}
+
                     @if($post->comment->isNotEmpty())
                     <div class="list-group">
                         @foreach($post->comment as $comment)

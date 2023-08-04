@@ -22,7 +22,6 @@
             <a href="{{ route('profile.show', $user->id)}}" class="text-decoration-none text-dark fw-bold">{{ $user->name }}</a>
             <p class="text-muted mb-0">{{ $user->email }}</p>
           </div>
-          {{-- text-truncate 文字... のように長い文章を省略できる --}}
 
           <div class="col-auto">
             @if($user->id !== Auth::user()->id)

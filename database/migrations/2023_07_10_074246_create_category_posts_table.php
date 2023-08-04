@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-            //テーブルpostsのidが削除されるとcategory_postsテーブルのpost_idも削除される。
+
 
         });
     }

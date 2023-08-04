@@ -13,9 +13,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
-//  users migrationにsoftdeletesを追加したあとにここにもsoftdeletesと上部にモデル?softdeletesを追加する。
-//  withTrashed()を使用するためにこのテーブルにSoftDeletesを追加する必要がある。
-//  ソフトデリートを追加したマイグレーションも参照。
 
     /**
      * The attributes that are mass assignable.
@@ -55,15 +52,13 @@ class User extends Authenticatable
     //フォローされてる人
     public function followers(){
         return $this->hasMany(Follow::class,'following_id');
-     // migration上で指定した同じreferenceが2つある場合、↑使う方を指定する。
-    //  followersを知りたいのでfollowing_idをもとに探す。
+    //  following_idをもとにfollowsを探す。
     }
     //フォローしている人
     public function following(){
         return $this->hasMany(Follow::class,'follower_id');
 }
     //自分がフォローしている人を見つける(フォロワーの中に自分を含む人)
-    // exists()は存在していればTrueを返す
     public function isFollowed(){
         return $this->followers()->where('follower_id',Auth::User()->id)->exists();
     }

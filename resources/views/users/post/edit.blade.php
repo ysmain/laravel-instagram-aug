@@ -15,7 +15,6 @@
               @if (in_array($category->id,$selected_categories))
                 <div class="form-check form-check-inline">
                     <input type="checkbox"  name="categories[]" class="form-check-input" id="category_{{$category->id}}" value ="{{$category->id}}" checked>
-                                                    {{-- ↑ここに[]を入れることでチェックボックスで複数選択されたデータがarray化する。 --}}
                     <label for="category_{{$category->id}}" class="me-2 form-check-label">{{$category->name}}</label>
                 </div>
               @else
@@ -26,11 +25,7 @@
               @endif
             @endforeach
     </div>
-    {{-- @error('category')
-        <div class="text-danger">
-            {{$message}}
-        </div>
-    @enderror --}}
+
     <div class="form-group mb-3">
         <label for="description" class="form-label fw-bold">Description</label>
         <textarea name="description" id="description" class="form-control" cols="" rows="3" placeholder="What's on your mind">{{$post->description}}</textarea>

@@ -12,8 +12,7 @@ class Follow extends Model
 
     public function follower(){
         return $this->belongsTo(User::class,'follower_id');
-        // migration上で指定した同じreferenceが2つある場合、↑使う方を指定する。
-        // Userテーブルへfollower_idで参照している。
+
     }
 
     public function following(){

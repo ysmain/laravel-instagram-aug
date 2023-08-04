@@ -10,10 +10,6 @@ return new class extends Migration
      * Run the migrations.
      */
 
-    // usersテーブルにdeleted_atカラムを追加。
-    // SoftDeletes()も追加することで、deleteしても論理削除になる。
-    // データ自体は削除はされず、deleted_atに時刻が追加される。
-    // 続きはUserモデル参照。
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {

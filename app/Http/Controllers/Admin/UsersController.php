@@ -14,9 +14,7 @@ class UsersController extends Controller
     {
         //
         $all_users = User::withTrashed()->get()->except(Auth::user()->id);
-        // withtrashed() 論理削除済みのものも含んでgetする。
-        // get all trash and not trash, but except for my ID
-        // get the trash and not trash but do not get my ID but still get it
+
         return view('admin.users.index')
                  ->with('all_users', $all_users);
     }
@@ -25,7 +23,6 @@ class UsersController extends Controller
     {
         $user = $request->input('search');
 
-        // Perform your search logic here
         $results = User::where('name', 'LIKE', "%$user%")->get();
 
         return view('admin.users.result')
@@ -44,8 +41,6 @@ class UsersController extends Controller
     {
         //
         User::onlyTrashed()->findOrFail($id)->restore();
-        // onlyTrashed() 論理削除（ソフトデリート）されたもののみ取得する。
-        // restore() 論理削除されたものを復活させる。
 
         return redirect()->back();
 
