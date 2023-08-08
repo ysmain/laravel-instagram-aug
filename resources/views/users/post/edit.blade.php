@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Edit post')
+@section('title','Edit Post')
 
 @section('content')
 
@@ -24,32 +24,39 @@
                 </div>
               @endif
             @endforeach
+            @error('categories')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
     </div>
 
     <div class="form-group mb-3">
         <label for="description" class="form-label fw-bold">Description</label>
         <textarea name="description" id="description" class="form-control" cols="" rows="3" placeholder="What's on your mind">{{$post->description}}</textarea>
-    </div>
-    @error('description')
+        @error('description')
         <div class="text-danger">
             {{$message}}
         </div>
-    @enderror
+        @enderror
+    </div>
+
     <div class="p-0 border-end w-25">
         <img src="{{$post->image}}" alt="{{$post->image}}" class="w-100">
     </div>
     <div class="my-2 ">
         <input type="file"  name="image" id="image" class="form-control">
-        <div class="form-text">
-            The acceptable formats are jpg, jpeg, png and gif only <br>
-            THe image size must be less than 2MB
-        </div>
-    </div>
-    @error('image')
+        @error('image')
         <div class="text-danger">
             {{$message}}
         </div>
-    @enderror
+        @enderror
+        <div class="form-text">
+            The acceptable formats are jpg, jpeg, png and gif only <br>
+            The image size must be less than 1048kB
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-warning px-5">Save</button>
 </form>
 

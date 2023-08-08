@@ -36,13 +36,20 @@ class ProfileController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|min:1|max:50',
+            'email'  => 'required|min:1|max:100',
+            'introduction'  => 'required|min:1|max:1000',
+            'avatar' => 'mimes:jpg,jpeg,png,gif|max:1048'
+           ]);
+
         $user = $this->user->findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         if($request->avatar){
         $user->avatar = 'data:image/'.$request->avatar->extension().';base64,'.base64_encode(file_get_contents($request->avatar));
         }
-        $user->description = $request->description;
+        $user->description = $request->introduction;
         $user->save();
 
         return redirect()->route('profile.show', $id);

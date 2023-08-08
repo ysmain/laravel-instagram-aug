@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Create post')
+@section('title','Create Post')
 
 @section('content')
 
@@ -16,9 +16,14 @@
                 <label for="category_{{$category->id}}" class="me-2 form-check-label">{{$category->name}}</label>
               </div>
             @endforeach
+            @error('categories')
+            <div class="text-danger">
+                {{$message}}
+            </div>
+            @enderror
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group">
         <label for="description" class="form-label fw-bold">Description</label>
         <textarea name="description" id="description" class="form-control" cols="" rows="3" placeholder="What's on your mind"></textarea>
     </div>
@@ -27,19 +32,20 @@
             {{$message}}
         </div>
     @enderror
-    <div class="mb-3">
+    <div class="my-3">
         <label for="image" class="fw-bold form-label">Image</label>
         <input type="file"  name="image" id="image" class="form-control">
-        <div class="form-text">
-            The acceptable formats are jpg, jpeg, png and gif only <br>
-            The image size must be less than 2MB
-        </div>
-    </div>
-    @error('image')
+        @error('image')
         <div class="text-danger">
             {{$message}}
         </div>
-    @enderror
+        @enderror
+        <div class="form-text">
+            The acceptable formats are jpg, jpeg, png and gif only <br>
+            The image size must be less than 1048kB
+        </div>
+    </div>
+
     <button type="submit" class="btn btn-primary px-5">Post</button>
 </form>
 

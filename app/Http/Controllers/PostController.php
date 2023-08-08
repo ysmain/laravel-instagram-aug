@@ -38,6 +38,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'categories'  => 'required',
+            'description'  => 'required|min:1|max:1000',
+            'image' => 'required|mimes:jpg,jpeg,png,gif|max:1048'
+           ]);
 
         $this->post->user_id = Auth::user()->id;
         $this->post->description = $request->description;
@@ -85,6 +90,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'categories' => 'required',
+            'description'  => 'required|min:1|max:1000',
+            'image' => 'mimes:jpg,jpeg,png,gif|max:1048'
+           ]);
 
         $post->description = $request->description;
         if($request->image){
