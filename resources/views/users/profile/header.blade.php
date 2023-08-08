@@ -4,7 +4,7 @@
             <img src="{{$user->avatar}}" alt="{{$user->avatar}}" class="rounded-circle float-end avatar-lg d-block">
         @else
             <div class="text-center mb-2">
-                <i class="icon-lg fa-solid fa-circle-user text-secondary"></i>
+                <i class="icon-lg fa-solid fa-circle-user text-secondary float-end"></i>
             </div>
         @endif
     </div>
