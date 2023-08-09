@@ -27,18 +27,22 @@
                     </a>
                 </div>
                 <div class="col-auto text-end">
-                    @if ($following->following->isFollowed())
-                        <form action="{{route('follow.destroy',$following->following->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn text-danger">Following</button>
-                        </form>
+                    @if ($following->following_id == Auth::User()->id)
+                         {{-- 他者のアカウントでフォローイングに自分が含まれている場合 --}}
                     @else
-                        <form action="{{route('follow.store')}}" method="post">
-                            @csrf
-                            <input type="hidden" name="following_id" value="{{$following->following->id}}">
-                            <button type="submit" class="btn text-primary">Follow</button>
-                        </form>
+                        @if ($following->following->isFollowed())
+                            <form action="{{route('follow.destroy',$following->following->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn text-danger">Following</button>
+                            </form>
+                        @else
+                            <form action="{{route('follow.store')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="following_id" value="{{$following->following->id}}">
+                                <button type="submit" class="btn text-primary">Follow</button>
+                            </form>
+                        @endif
                     @endif
                 </div>
               </div>

@@ -52,7 +52,7 @@ class User extends Authenticatable
     //フォローされてる人
     public function followers(){
         return $this->hasMany(Follow::class,'following_id');
-    //  following_idをもとにfollowsを探す。
+    //  following_idをもとにfollowerを探す。
     }
     //フォローしている人
     public function following(){

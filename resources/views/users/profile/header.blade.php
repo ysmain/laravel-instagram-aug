@@ -12,9 +12,21 @@
         <div class="mt-1">
             <h1 class="d-inline">{{$user->name}}</h1>
             @if (Auth::user()->id == $user->id)
-                <a href="{{route('profile.edit',Auth::user()->id)}}" class="btn btn-outline-secondary ms-3 mb-2">Edit Profile</a>
+                <a href="{{route('profile.edit',Auth::user()->id)}}" class="btn btn-outline-secondary ms-3 mb-3">Edit Profile</a>
             @else
-                <a href="{{route('follow.store')}}"class="btn btn-primary ms-3 mb-3">Follow</a>
+                @if($user->isFollowed())
+                    <form action="{{route('follow.destroy',$user->id)}}" method="post" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-secondary ms-3 mb-3">Following</button>
+                    </form>
+                @else
+                    <form action="{{route('follow.store')}}" method="post" class="d-inline">
+                        @csrf
+                        <input type="hidden" name="following_id" value="{{$user->id}}">
+                        <button type="submit" class="btn btn-primary ms-3 mb-3">Follow</button>
+                    </form>
+                @endif
             @endif
             {{-- follower数など表示 --}}
             <div class="row mb-3">
