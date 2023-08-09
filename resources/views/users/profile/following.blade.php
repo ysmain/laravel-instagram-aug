@@ -13,7 +13,7 @@
                 Following
             </h3>
             @foreach ($user->following as $following)
-              <div class="row jutify-content-center">
+              <div class="row jutify-content-center mb-2">
                 <div class="col-auto">
                     @if ($following->following->avatar)
                         <img src="{{$following->following->avatar}}" alt="" class="rounded-circle avatar-sm">
