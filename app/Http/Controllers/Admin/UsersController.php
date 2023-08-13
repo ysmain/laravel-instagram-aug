@@ -13,7 +13,7 @@ class UsersController extends Controller
     public function index()
     {
         //
-        $all_users = User::withTrashed()->get()->except(Auth::user()->id);
+        $all_users = User::withTrashed()->where('role_id', '!=', 1)->get();
 
         return view('admin.users.index')
                  ->with('all_users', $all_users);
