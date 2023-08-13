@@ -116,7 +116,7 @@
 
                     @if($post->comment->isNotEmpty())
                     <div class="list-group">
-                        @foreach($post->comment as $comment)
+                        @foreach($post->comment->sortBy('created_at') as $comment)
                             <div class="list-group-item border-0 p-0">
                                 <a href="{{route('profile.show',$comment->user->id)}}" class="text-decoration-none text-dark fw-bold ms-1">{{$comment->user->name}}</a>
                                 &nbsp;
