@@ -67,11 +67,6 @@
                 </div>
                 @enderror
 
-                <div class="form-group mt-2">
-                    <label for="email" class="fw-bold">roleid</label>
-                    <input type="number" class="form-control mt-2" name="role" id="email" value="{{$user->role_id}}">
-                </div>
-
                 <button type="submit" class="btn btn-warning mt-3 w-25 ms-3">Save</button>
             </div>
         </form>

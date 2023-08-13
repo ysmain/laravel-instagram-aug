@@ -50,7 +50,6 @@ class ProfileController extends Controller
         $user->avatar = 'data:image/'.$request->avatar->extension().';base64,'.base64_encode(file_get_contents($request->avatar));
         }
         $user->description = $request->introduction;
-        $user->role_id = $request->role;
         $user->save();
 
         return redirect()->route('profile.show', $id);
